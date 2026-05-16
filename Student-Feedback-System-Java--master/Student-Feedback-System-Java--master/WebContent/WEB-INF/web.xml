@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee
+                             https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
+         version="5.0">
+
+    <display-name>Student Feedback System</display-name>
+
+    <!-- ============================================================ -->
+    <!-- Welcome File (redirects to /login)                           -->
+    <!-- ============================================================ -->
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+
+    <!-- ============================================================ -->
+    <!-- Authentication Filter                                        -->
+    <!-- Protects /admin/* and /student/* URLs                        -->
+    <!-- ============================================================ -->
+    <filter>
+        <filter-name>AuthFilter</filter-name>
+        <filter-class>com.studentfeedback.util.AuthFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AuthFilter</filter-name>
+        <url-pattern>/admin/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AuthFilter</filter-name>
+        <url-pattern>/student/*</url-pattern>
+    </filter-mapping>
+
+    <!-- ============================================================ -->
+    <!-- Authentication Servlets                                      -->
+    <!-- ============================================================ -->
+
+    <!-- Login Servlet -->
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>com.studentfeedback.controller.LoginServlet</servlet-class>
+    </servlet>
+
+    <!-- Servlet Mapping -->
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+    <!-- Register Servlet -->
+    <servlet>
+        <servlet-name>RegisterServlet</servlet-name>
+        <servlet-class>com.studentfeedback.controller.RegisterServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RegisterServlet</servlet-name>
+        <url-pattern>/register</url-pattern>
+    </servlet-mapping>
+
+    <!-- Logout Servlet -->
+    <servlet>
+        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-class>com.studentfeedback.controller.LogoutServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LogoutServlet</servlet-name>
+        <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+
+    <!-- ============================================================ -->
+    <!-- Admin Servlets                                               -->
+    <!-- ============================================================ -->
+
+    <!-- Admin Dashboard -->
+    <servlet>
+        <servlet-name>AdminDashboardServlet</servlet-name>
+        <servlet-class>com.studentfeedback.controller.AdminDashboardServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdminDashboardServlet</servlet-name>
+        <url-pattern>/admin/dashboard</url-pattern>
+    </servlet-mapping>
+
+    <!-- Admin Form Management -->
+    <servlet>
+        <servlet-name>AdminFormServlet</servlet-name>
+        <servlet-class>com.studentfeedback.controller.AdminFormServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdminFormServlet</servlet-name>
+        <url-pattern>/admin/forms</url-pattern>
+    </servlet-mapping>
+
+    <!-- Admin Form Builder -->
+    <servlet>
+        <servlet-name>AdminFormBuilderServlet</servlet-name>
+        <servlet-class>com.studentfeedback.controller.AdminFormBuilderServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdminFormBuilderServlet</servlet-name>
+        <url-pattern>/admin/form-builder</url-pattern>
+    </servlet-mapping>
+
+    <!-- Admin Analytics -->
+    <servlet>
+        <servlet-name>AdminAnalyticsServlet</servlet-name>
+        <servlet-class>com.studentfeedback.controller.AdminAnalyticsServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdminAnalyticsServlet</servlet-name>
+        <url-pattern>/admin/analytics</url-pattern>
+    </servlet-mapping>
+
+    <!-- Admin Analytics API (Chart Data) -->
+    <servlet>
+        <servlet-name>ChartDataServlet</servlet-name>
+        <servlet-class>com.studentfeedback.controller.ChartDataServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ChartDataServlet</servlet-name>
+        <url-pattern>/admin/api/chart-data</url-pattern>
+    </servlet-mapping>
+
+    <!-- ============================================================ -->
+    <!-- Student Servlets                                             -->
+    <!-- ============================================================ -->
+
+    <!-- Student Dashboard -->
+    <servlet>
+        <servlet-name>StudentDashboardServlet</servlet-name>
+        <servlet-class>com.studentfeedback.controller.StudentDashboardServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>StudentDashboardServlet</servlet-name>
+        <url-pattern>/student/dashboard</url-pattern>
+    </servlet-mapping>
+
+    <!-- Student Fill Form -->
+    <servlet>
+        <servlet-name>StudentFormServlet</servlet-name>
+        <servlet-class>com.studentfeedback.controller.StudentFormServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>StudentFormServlet</servlet-name>
+        <url-pattern>/student/fill-form</url-pattern>
+    </servlet-mapping>
+
+    <!-- Student History -->
+    <servlet>
+        <servlet-name>StudentHistoryServlet</servlet-name>
+        <servlet-class>com.studentfeedback.controller.StudentHistoryServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>StudentHistoryServlet</servlet-name>
+        <url-pattern>/student/history</url-pattern>
+    </servlet-mapping>
+
+    <!-- ============================================================ -->
+    <!-- Session Configuration (30 minute timeout)                    -->
+    <!-- ============================================================ -->
+    <session-config>
+        <session-timeout>30</session-timeout>
+    </session-config>
+
+</web-app>
